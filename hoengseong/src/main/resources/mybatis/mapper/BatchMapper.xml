@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.hoengseong.batch.dao.BatchMapper">
+
+	<resultMap id="logResultMap" type="com.project.hoengseong.batch.model.LogDTO">
+        <result column="id" property="id"/>
+        <result column="regDt" property="regDt"/>
+    </resultMap>
+
+    <insert id="insertLog" parameterType="com.project.hoengseong.batch.model.LogDTO">
+        INSERT INTO tb_move_log (id, regDt) VALUES (#{id}, now())
+    </insert>
+    
+    <select id="idRand">
+        select id from tb_move_info order by RAND() limit 1
+    </select>
+    
+</mapper>

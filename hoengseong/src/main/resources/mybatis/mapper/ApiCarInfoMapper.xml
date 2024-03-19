@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.hoengseong.user.dao.ApiCarInfoMapper">
+
+	<resultMap id="carResultMap" type="com.project.hoengseong.user.model.CarInfoDTO">
+        <result column="id" property="id"/>
+        <result column="car_number" property="carNumber"/>
+        <result column="break_yn" property="breakYn"/>
+    </resultMap>
+    
+    <select id="getCarList" resultMap="carResultMap">
+        SELECT id, car_number, break_yn FROM tb_move_info
+    </select>
+    
+    <select id="getCarByInfo" resultMap="carResultMap">
+        SELECT id, car_number, break_yn FROM tb_move_info WHERE id = #{id}
+    </select>
+    
+ 	<insert id="carInsert">
+         INSERT INTO tb_move_info (id, car_number, break_yn) VALUES (#{id}, #{carNumber}, #{breakYn}) 
+    </insert>
+    
+    <update id="carUpdate">
+        UPDATE tb_move_info SET car_number=#{carNumber}, break_yn=#{breakYn} WHERE id=#{id}
+    </update>
+    
+    <update id="carUpdatePut" parameterType="com.project.hoengseong.user.model.CarInfoDTO">
+        UPDATE tb_move_info SET car_number=#{carNumber} WHERE id=#{id}
+    </update>
+    
+	<delete id="carDelete">
+        DELETE FROM tb_move_info WHERE id=#{id}
+    </delete>
+ 
+</mapper>
