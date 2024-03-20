@@ -14,7 +14,7 @@ public class WebTestController {
     public String index(Model model) {
 		System.out.println("home controller start");
 		model.addAttribute("data", "web/index 입니다.");
-        return "web/index";
+        return "/web/index";
     }
 	
 	//ResponseBody
